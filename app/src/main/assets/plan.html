@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 90vh;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+    <title>OpenLayers</title>
+</head>
+<body>
+<div id="map" class="map"></div>
+<script type="text/javascript">
+	  	var batiment = new ol.layer.Image({
+		source: new ol.source.ImageWMS({
+			url: 'http://192.168.0.12:8080/geoserver/sig_work_space/wms',
+			params: {
+				'REQUEST'    : 'GetMap',
+				'SERVICE'    : 'WMS',
+				'VERSION'    : '1.1.0',
+				'STYLES'     : '',
+				'LAYERS'     : 'sig_work_space:etage',
+				'CRS'        : 'EPSG:26918',
+				'BBOX'       : '15.0,0.0,47.0,36.0',
+				'WIDTH'      : '682',
+				'HEIGHT'     : '768',
+			}
+		})
+	  });
+
+	   var map = new ol.Map({
+		target: 'map',
+		layers: [batiment],
+		view: new ol.View({
+			center: [31.0,20.0],
+			zoom: 20.8
+		})
+	  });
+
+    </script>
+</body>
+</html>
